@@ -41,22 +41,28 @@ Java实验5代码仓库
  ## 实验过程
    1.Student类
      这一类主要是写出一个学生应该所具有的属性（名字,性别,学号,作业）并且写出给这些属性赋值的函数.
+     
    2.Homework类
      这一类是为学生类里的作业属性而创建的类,该类里主要用于读取作业并存放到字符串里.
      首先,在这个读取的方法当中,应当有一个形参为String类型,来接收学生作业的文件路径,在本程序中为固定路径，学生需要把自己的作业放到指定路径下,程序方可自动读取该作业.
      其次开始考虑如何读取作业,用File file = new File(filename)来创建一个File类的对象file,并且将刚才设计的形参filename作为输入流的指向,也就是说该程序之后会在该形参的值里读取路径输入给这个路径.
      然后InputStreamReader Reader创建一个Reader对象来读取文件的内容,作为一个程序要处理的文件大小不定,所以用上了缓冲区Bufferedreader,用上while循环把读取的内容存放到字符串中.
+     
    3.input类
      该类主要作用是将整个程序需要用于输出的方法都写在该类当中.
      例如学生的姓名,性别,学号,还有这个作业处理程序的主菜单.
+     
    4.txthandle类
      该类是用于处理作业的类.
      在读取完作业的内容之后,字符串里的内容是没被整理过的,以本程序的输入文本.txt为例,它里面的内容是没有排版的古诗,要将它整理成有标点符号且整齐的古诗,需要每7个汉字加入一个标点符号，奇数时加“，”，偶数时加“。”,即实验的要求1.
+     
    5.Out类
      该类为输出类,里面的方法可以将整理好的字符串输出到G磁盘下Homework文件夹里的handle.txt文档里
+     
    6.Statistics类
      该类的方法用来做词频统计.
      利用indexOf()方法来索引某个词或字配合上while循环直到它的返回值为-1为止,每次索引后,令index的值+1这样下次可以排除索引重复,每循环一次count加一,最后count为词频.
+     
    7.Test类
      该类为主类,用于结合其他所有类来测试该程序.
      
@@ -195,6 +201,36 @@ Java实验5代码仓库
         return count;
         
     }
+```
+```
+5.public static String handle(String filename)
+
+    {
+        
+
+
+
+        for (int i = 0; i<filename.length(); i = i+7) 
+        {
+        	
+
+            if( i%2 == 0 )
+            {
+                String split = filename.substring(i, i+7);
+
+                m=m+split+ ",";
+            }
+            if( i%2 == 1 )
+            {
+                String split = filename.substring(i, i+7);
+                
+
+                m=m+split+ "." + "\n";
+            }
+
+        }
+        m=m.replaceAll("null","");//清空null
+        return m;//返回整理后的字符串
 ```
 
 
